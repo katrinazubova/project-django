@@ -1,0 +1,31 @@
+body {
+    background: #eeeeee;
+}
+
+aside {
+    float: left;
+    background: #bbbbbb;
+    width: 16%;
+    padding-top: 90px;
+    height: 100vh;
+    color: #fff;
+    border-right: 5px solid #4d4d4d;
+}
+
+.navigation {
+    list-style-type: none;
+}
+
+.link {
+    color: #000000;
+    text-decoration: none;
+    font-size: 20px;
+    margin-bottom: 25px;
+    display: inline-block;
+}
+
+.title {
+    text-align: center;
+    padding-top:20px;
+}
+

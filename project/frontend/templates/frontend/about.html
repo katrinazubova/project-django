@@ -1,8 +1,142 @@
 {% extends 'frontend/layout.html' %}
-
-{% block title %}про нас{% endblock %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'frontend/css/index.css' %}">
+<link rel="stylesheet" href="{% static 'frontend/css/about.css' %}">
+{% endblock %}
+{% block title %}Общая статистика{% endblock %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 {% block content %}
-    <h1>про нас</h1>
-    <p>про нас</p>
-{% endblock %}
+   <div class="container mt-5">
+    <h1>Общая статистика</h1>
+    <div class="row mt-4">
+        <!-- Динамика уровня зарплат по годам -->
+        <div class="col-md-6">
+            <h2>Динамика уровня зарплат по годам</h2>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Год</th>
+                        <th>Средняя зарплата</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for year, salary in stats.salary_by_year.items %}
+                    <tr>
+                        <td>{{ year }}</td>
+                        <td>{{ salary|floatformat:2 }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="2">Данные отсутствуют</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Динамика количества вакансий по годам -->
+        <div class="col-md-6">
+            <h2>Динамика количества вакансий по годам</h2>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Год</th>
+                        <th>Количество вакансий</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for year, count in stats.vacancy_count_by_year.items %}
+                    <tr>
+                        <td>{{ year }}</td>
+                        <td>{{ count }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="2">Данные отсутствуют</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <!-- Уровень зарплат по городам -->
+        <div class="col-md-6">
+            <h2>Уровень зарплат по городам</h2>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Город</th>
+                        <th>Средняя зарплата</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for city, salary in stats.salary_by_city.items %}
+                    <tr>
+                        <td>{{ city }}</td>
+                        <td>{{ salary|floatformat:2 }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="2">Данные отсутствуют</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Доля вакансий по городам -->
+        <div class="col-md-6">
+            <h2>Доля вакансий по городам</h2>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Город</th>
+                        <th>Доля</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for city, share in stats.vacancy_share_by_city.items %}
+                    <tr>
+                        <td>{{ city }}</td>
+                        <td>{{ share|floatformat:2 }}%</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="2">Данные отсутствуют</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+     <div class="row mt-4">
+        <!-- ТОП-20 навыков -->
+        <div class="col-md-12">
+            <h2>ТОП-20 навыков</h2>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Навык</th>
+                        <th>Количество упоминаний</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for skill, count in stats.top_skills %}
+                    <tr>
+                        <td>{{ skill }}</td>
+                        <td>{{ count }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="2">Данные отсутствуют</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

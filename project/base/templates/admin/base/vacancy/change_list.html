@@ -1,0 +1,13 @@
+{% extends "admin/change_list.html" %}
+
+{% block content %}
+    <div>
+        <h2>Импортировать данные из CSV</h2>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="file" name="csv_file" accept=".csv" required>
+            <button type="submit" class="button">Импортировать</button>
+        </form>
+    </div>
+    {{ block.super }}
+{% endblock %}

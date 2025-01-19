@@ -40,11 +40,11 @@
     <aside class="sidebar">
         <ul class="navigation">
             <li><a class="link" href="{% url 'index' %}">Главная страница</a></li>
-            <li><a class="link" href="{% url 'about' %}">Общая статистика</a></li>
-            <li><a class="link" href="#">Востребованность</a></li>
-            <li><a class="link" href="#">География</a></li>
-            <li><a class="link" href="#">Навыки</a></li>
-            <li><a class="link" href="#">Последние вакансии</a></li>
+            <li><a class="link" href="{% url 'stats' %}">Общая статистика</a></li>
+            <li><a class="link" href="{% url 'demand' %}">Востребованность</a></li>
+            <li><a class="link" href="{% url 'geography' %}">География</a></li>
+            <li><a class="link" href="{% url 'skills' %}">Навыки</a></li>
+            <li><a class="link" href="{% url 'last_vac' %}">Последние вакансии</a></li>
         </ul>
     </aside>
     {% block content %}

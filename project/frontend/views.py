@@ -7,7 +7,6 @@ def layout(request):
     return render(request, 'frontend/layout.html')
 def index(request):
     return render(request, 'frontend/index.html')
-def about(request):
-    return render(request, 'frontend/about.html')
+
 
 

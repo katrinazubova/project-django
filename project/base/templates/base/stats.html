@@ -1,30 +1,26 @@
 {% extends 'frontend/layout.html' %}
 {% load static %}
 {% block css %}
-<link rel="stylesheet" href="{% static 'frontend/css/about.css' %}">
+<link rel="stylesheet" href="{% static 'base/css/stats.css' %}">
 {% endblock %}
-{% block title %}Общая статистика{% endblock %}
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
 {% block content %}
-   <div class="container mt-5">
+    <div class="container mt-5">
     <h1>Общая статистика</h1>
     <div class="row mt-4">
-        <!-- Динамика уровня зарплат по годам -->
-        <div class="col-md-6">
+        <div class="col-md-5">
             <h2>Динамика уровня зарплат по годам</h2>
             <table class="table table-bordered">
                 <thead>
                     <tr>
                         <th>Год</th>
-                        <th>Средняя зарплата</th>
+                        <th>Средняя зарплата (тыс. руб.)</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {% for year, salary in stats.salary_by_year.items %}
+                    {% for stat in stats.salary_by_year %}
                     <tr>
-                        <td>{{ year }}</td>
-                        <td>{{ salary|floatformat:2 }}</td>
+                        <td>{{ stat.year }}</td>
+                        <td>{{ stat.avg_salary|floatformat:2 }}</td>
                     </tr>
                     {% empty %}
                     <tr>
@@ -36,7 +32,7 @@
         </div>
 
         <!-- Динамика количества вакансий по годам -->
-        <div class="col-md-6">
+        <div class="col-md-5">
             <h2>Динамика количества вакансий по годам</h2>
             <table class="table table-bordered">
                 <thead>
@@ -46,10 +42,10 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for year, count in stats.vacancy_count_by_year.items %}
+                    {% for stat in stats.vacancy_count_by_year %}
                     <tr>
-                        <td>{{ year }}</td>
-                        <td>{{ count }}</td>
+                        <td>{{ stat.year }}</td>
+                        <td>{{ stat.vacancy_count }}</td>
                     </tr>
                     {% empty %}
                     <tr>
@@ -73,10 +69,10 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for city, salary in stats.salary_by_city.items %}
+                    {% for city in stats.salary_by_city %}
                     <tr>
-                        <td>{{ city }}</td>
-                        <td>{{ salary|floatformat:2 }}</td>
+                        <td>{{ city.city }}</td>
+                        <td>{{ city.avg_salary|floatformat:2 }}</td>
                     </tr>
                     {% empty %}
                     <tr>
@@ -98,10 +94,10 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for city, share in stats.vacancy_share_by_city.items %}
+                    {% for city in stats.vacancy_share_by_city %}
                     <tr>
-                        <td>{{ city }}</td>
-                        <td>{{ share|floatformat:2 }}%</td>
+                        <td>{{ city.city }}</td>
+                        <td>{{ city.vacancy_share|floatformat:2 }}%</td>
                     </tr>
                     {% empty %}
                     <tr>
@@ -112,7 +108,8 @@
             </table>
         </div>
     </div>
-     <div class="row mt-4">
+
+    <div class="row mt-4">
         <!-- ТОП-20 навыков -->
         <div class="col-md-12">
             <h2>ТОП-20 навыков</h2>
@@ -138,5 +135,5 @@
             </table>
         </div>
     </div>
-</div>
+    </div>
 {% endblock %}

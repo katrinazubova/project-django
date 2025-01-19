@@ -1,0 +1,128 @@
+body {
+    margin: 0;
+    background-color: #f8f9fa;
+}
+
+.container {
+    margin-left: 280px;
+    padding: 20px;
+}
+h1 {
+    font-size: 27px;
+}
+
+h2 {
+    font-size: 23px;
+}
+
+.table {
+    width: 100%;
+    margin-bottom: 20px;
+    border-collapse: collapse;
+    table-layout: fixed;
+    word-wrap: break-word;
+}
+
+.table th,
+.table td {
+    text-align: left;
+    padding: 6px;
+    border: 1px solid #dee2e6;
+    font-size: 12px;
+}
+
+.table th {
+    background-color: #f1f1f1;
+    font-weight: bold;
+}
+
+.table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Мобильная адаптация */
+@media (max-width: 768px) {
+    .container {
+        margin-left: 0;
+        padding: 10px;
+    }
+
+    h1, h2 {
+        font-size: 18px;
+        text-align: center;
+    }
+
+    .table th,
+    .table td {
+        font-size: 10px;
+        padding: 4px;
+    }
+}
+
+@media (max-width: 576px) {
+    h1, h2 {
+        font-size: 16px;
+    }
+
+    .table th,
+    .table td {
+        font-size: 9px;
+    }
+}
+.table {
+    max-width: 80%; /* Ограничение максимальной ширины */
+    margin-bottom: 20px;
+    border-collapse: collapse;
+    table-layout: fixed; /* Ограничение ширины столбцов */
+    word-wrap: break-word; /* Перенос слов для предотвращения выхода за пределы */
+}
+
+.table th,
+.table td {
+    text-align: left;
+    padding: 6px;
+    border: 1px solid #dee2e6;
+    font-size: 12px;
+    max-width: 150px; /* Ограничение ширины столбцов */
+}
+
+.table th {
+    background-color: #f1f1f1;
+    font-weight: bold;
+}
+
+.table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Мобильная адаптация */
+@media (max-width: 768px) {
+    .container {
+        margin-left: 0;
+        padding: 10px;
+    }
+
+    .table th,
+    .table td {
+        font-size: 14px;
+        padding: 6px;
+    }
+
+    h1, h2 {
+        font-size: 20px;
+    }
+}
+
+/* Малые экраны */
+@media (max-width: 576px) {
+    h1, h2 {
+        font-size: 18px;
+        text-align: center;
+    }
+
+    .table th,
+    .table td {
+        font-size: 12px;
+        padding: 5px;
+    }
+}

@@ -1,0 +1,27 @@
+{% extends 'frontend/layout.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'base/css/last_vac.css' %}">
+{% endblock %}
+{% block content %}
+<div class="container mt-5">
+    <h1 class="mb-4">Последние вакансии</h1>
+        {% if vacancies and vacancies|length > 0 %}
+            <div class="list-group ">
+                {% for vacancy in vacancies %}
+                    <div class="list-group-item mb-4">
+                        <h2 class="mb-1 mt-2">{{ vacancy.title }}</h2>
+                        <p class="text-muted">Компания: {{ vacancy.company }}</p>
+                        <p><strong>Описание:</strong> {{ vacancy.description|safe }}</p>
+                        <p><strong>Навыки:</strong> {{ vacancy.skills }}</p>
+                        <p><strong>Оклад:</strong> {{ vacancy.salary }}</p>
+                        <p><strong>Регион:</strong> {{ vacancy.region }}</p>
+                        <p><strong>Дата публикации:</strong> {{ vacancy.published_at }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="text-danger">Нет доступных вакансий.</p>
+        {% endif %}
+    </div>
+{% endblock %}

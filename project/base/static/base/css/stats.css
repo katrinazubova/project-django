@@ -4,7 +4,7 @@ body {
 }
 
 .container {
-    margin-left: 280px;
+    margin-left: 270px;
     padding: 20px;
 }
 h1 {
@@ -70,11 +70,11 @@ h2 {
     }
 }
 .table {
-    max-width: 80%; /* Ограничение максимальной ширины */
+    max-width: 80%;
     margin-bottom: 20px;
     border-collapse: collapse;
-    table-layout: fixed; /* Ограничение ширины столбцов */
-    word-wrap: break-word; /* Перенос слов для предотвращения выхода за пределы */
+    table-layout: fixed;
+    word-wrap: break-word;
 }
 
 .table th,
@@ -83,7 +83,7 @@ h2 {
     padding: 6px;
     border: 1px solid #dee2e6;
     font-size: 12px;
-    max-width: 150px; /* Ограничение ширины столбцов */
+    max-width: 150px;
 }
 
 .table th {

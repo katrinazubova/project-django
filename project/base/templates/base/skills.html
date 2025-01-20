@@ -3,13 +3,12 @@
 {% block css %}
 <link rel="stylesheet" href="{% static 'base/css/demand.css' %}">
 {% endblock %}
-
 {% block content %}
-<div class="container mt-5">
+<div class="container mt-4">
     <h1>Навыки</h1>
-    <div class="row mt-4">
+    <div class="row mt-5">
         <!-- ТОП-20 навыков -->
-        <div class="col-md-12">
+        <div class="col-md-11">
             <h2>ТОП-20 навыков</h2>
             <table class="table table-bordered">
                 <thead>
@@ -31,7 +30,47 @@
                     {% endfor %}
                 </tbody>
             </table>
+            <canvas id="skillsChart" width="400" height="200"></canvas>
         </div>
     </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    // Possible types: 'line', 'bar', 'radar', 'doughnut', 'polarArea', 'bubble', 'scatter'
+    const skillsData = {
+        labels: [
+            {% for skill, count in stats.top_skills %}
+                "{{ skill|escapejs }}"{% if not forloop.last %}, {% endif %}
+            {% endfor %}
+        ],
+        datasets: [{
+            label: 'Количество упоминаний',
+            data: [
+                {% for skill, count in stats.top_skills %}
+                    {{ count }}{% if not forloop.last %}, {% endif %}
+                {% endfor %}
+            ],
+            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+            borderColor: 'rgba(75, 192, 192, 1)',
+            borderWidth: 1
+        }]
+    };
+
+    const ctxSkills = document.getElementById('skillsChart').getContext('2d');
+    const skillsChart = new Chart(ctxSkills, {
+        type: 'bar', // Тип графика
+        data: skillsData,
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true // Начало оси Y с 0
+                }
+            }
+        }
+    });
+</script>
+
 {% endblock %}
+
+

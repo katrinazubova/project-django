@@ -28,15 +28,25 @@
             {% endif %}
         </div>
     </header>
-    <div id="auth-modal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <div class="auth-options">
-                <a href="{% url 'login' %}" class="btn">Войти</a>
-                <a href="{% url 'signup' %}" class="btn">Зарегистрироваться</a>
+    <div class="modal-overlay"></div>
+        <div id="auth-modal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Авторизация</h2>
+                <div class="auth-options">
+                    <a href="{% url 'login' %}" class="btn">Войти</a>
+                    <a href="{% url 'signup' %}" class="btn">Зарегистрироваться</a>
+                    <a href="/admin/" class="btn">Администратор</a>
+                    <form method="post" action="{% url 'logout' %}" class="m-0">
+                        {% csrf_token %}
+                        <button type="submit" class="btn"
+                          style="background-color: transparent; outline: none; color: inherit;">
+                          Выйти
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
     <aside class="sidebar">
         <ul class="navigation">
             <li><a class="link" href="{% url 'index' %}">Главная страница</a></li>

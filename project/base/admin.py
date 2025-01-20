@@ -1,6 +1,5 @@
 from django.contrib import admin
 from .models import Vacancy
-from .models import Statistics
 
 
 @admin.register(Vacancy)
